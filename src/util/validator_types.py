@@ -1,5 +1,5 @@
 from enum import Enum
 
-class ValidationTypes(Enum):
+class ValidatorTypes(Enum):
     expense = 1,
     number = 2
