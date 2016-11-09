@@ -13,6 +13,10 @@ class Repository:
         raise NotImplementedError()
 
     @abstractmethod
+    def unset_range(self, start, stop, expense):
+        raise NotADirectoryError()
+
+    @abstractmethod
     def unset_expense_for_type(self, exepnse):
         raise NotImplementedError()
 
@@ -22,4 +26,12 @@ class Repository:
 
     @abstractmethod
     def get_expenses(self, expense):
+        raise NotImplementedError()
+
+    @abstractmethod
+    def filber_by(self, filter_type, expense, asc=True):
+        raise NotImplementedError()
+
+    @abstractmethod
+    def get_expense(self, apartment_number, expense):
         raise NotImplementedError()

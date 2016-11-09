@@ -1,3 +1,3 @@
-from __builtin__ import xrange
+from builtins import range
 
-xrange = xrange
+xrange = range
