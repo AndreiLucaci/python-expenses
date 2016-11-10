@@ -72,7 +72,7 @@ class InMemoryRepository(Repository):
         return True
 
     def __validate_apartment_number_list(self, apartment_number):
-        result = True
+        result = False
         if Validator.validate_input(apartment_number, ValidatorTypes.list):
             result = all(self.__validate_apartment_number(i) for i in apartment_number)
         return result

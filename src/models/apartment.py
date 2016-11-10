@@ -38,5 +38,9 @@ class Apartment:
 
         return self.__expenses[expense]
 
+    def __str__(self):
+        return '\n'.join(['{} - {}'.format(i, self.__expenses[i]) for i in expenses.Expenses])
+
     def __reset_expense(self, expense):
         self.__expenses[expense] = 0
+
