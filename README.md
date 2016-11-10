@@ -1,5 +1,5 @@
 # python-expenses
-A small, education project in python
+A small, educational project in python
 
 
 # how to run
