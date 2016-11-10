@@ -1,5 +1,6 @@
 from src.models import expenses
 from src.models.filter_types import FilterTypes
+from src.repo.base_repo import Repository
 from src.util.validator_types import ValidatorTypes
 
 
@@ -14,3 +15,5 @@ class Validator:
             return isinstance(original_input, list)
         if original_type == ValidatorTypes.filter:
             return isinstance(original_input, FilterTypes)
+        if original_type == ValidatorTypes.repository:
+            return isinstance(original_input, Repository)

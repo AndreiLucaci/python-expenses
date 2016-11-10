@@ -21,6 +21,10 @@ class Repository:
         raise NotImplementedError()
 
     @abstractmethod
+    def unset_expense_lower_than(self, value):
+        raise NotImplementedError()
+
+    @abstractmethod
     def get_apartments_with_expenses_over(self, given_amount):
         raise NotImplementedError()
 

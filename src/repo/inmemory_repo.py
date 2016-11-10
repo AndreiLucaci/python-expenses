@@ -1,4 +1,5 @@
 from src.models.apartment import Apartment
+from src.models.expenses import Expenses
 from src.repo.base_repo import Repository
 from src.util.imports import range
 from src.util.validator import Validator
@@ -12,7 +13,7 @@ class InMemoryRepository(Repository):
         self.apartments = self.__apartments
 
     def set_expense(self, apartment_number, expense, value):
-        if self.__validate_aparment_number_list(apartment_number):
+        if self.__validate_apartment_number_list(apartment_number):
             [self.__set_expense_for_one(i, expense, value) for i in apartment_number]
         else:
             self.__set_expense_for_one(apartment_number, expense, value)
@@ -41,7 +42,7 @@ class InMemoryRepository(Repository):
         return [i for i in self.__apartments if i.get_expense() > given_amount]
 
     def unset_expense(self, apartment_number, expense):
-        if self.__validate_aparment_number_list(apartment_number):
+        if self.__validate_apartment_number_list(apartment_number):
             [self.__unset_expense_for_one(i, expense) for i in apartment_number]
         else:
             self.__unset_expense_for_one(apartment_number, expense)
@@ -55,6 +56,10 @@ class InMemoryRepository(Repository):
         if self.__validate_expense(expense):
             [i.unset_expense(expense) for i in self.__apartments]
 
+    def unset_expense_lower_than(self, value):
+        if self.__validate_number_value(value):
+            [i.unset_expense(j) for i in self.__apartments if i.get_expense(j) < value for j in Expenses]
+
     def unset_range(self, start, stop, expense):
         if self.__validate_range(start, stop):
             self.unset_expense(range(start, stop + 1), expense)
@@ -66,7 +71,7 @@ class InMemoryRepository(Repository):
             raise ValueError('Invalid appartment number provided', appartment_number)
         return True
 
-    def __validate_aparment_number_list(self, apartment_number):
+    def __validate_apartment_number_list(self, apartment_number):
         result = True
         if Validator.validate_input(apartment_number, ValidatorTypes.list):
             result = all(self.__validate_apartment_number(i) for i in apartment_number)
